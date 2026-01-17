@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founders Growth Archetype Survey | Waiwai Neuroeconomics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --ocean-deep: #0c4a6e;
+            --ocean-mid: #0369a1;
+            --ocean-light: #38bdf8;
+            --sand: #fef3c7;
+            --sand-dark: #fcd34d;
+            --coral: #f97316;
+            --coral-deep: #ea580c;
+            --palm: #166534;
+            --lava: #991b1b;
+            --foam: #f0f9ff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, var(--ocean-deep) 0%, var(--ocean-mid) 50%, var(--ocean-light) 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Wave decoration */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23fef3c7' fill-opacity='0.3' d='M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px 160px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--sand);
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: var(--sand);
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .hawaiian-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 32px 0;
+            color: var(--sand);
+            opacity: 0.6;
+            font-size: 1.25rem;
+        }
+
+        .hawaiian-divider::before,
+        .hawaiian-divider::after {
+            content: '';
+            height: 1px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, var(--sand), transparent);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ocean-deep);
+        }
+
+        .section-purpose {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+            padding-left: 48px;
+            font-style: italic;
+        }
+
+        .question {
+            background: var(--foam);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .question:hover {
+            border-color: var(--ocean-light);
+        }
+
+        .question.answered {
+            border-color: var(--palm);
+            background: linear-gradient(135deg, #f0fdf4, var(--foam));
+        }
+
+        .question:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-text {
+            font-size: 0.95rem;
+            color: #334155;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .question-number {
+            color: var(--coral);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .likert-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .likert-option input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .likert-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 4px;
+            border-radius: 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .likert-option input:checked + .likert-label {
+            background: linear-gradient(135deg, var(--ocean-mid), var(--ocean-deep));
+            border-color: var(--ocean-deep);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(3, 105, 161, 0.3);
+        }
+
+        .likert-option input:checked + .likert-label .likert-value,
+        .likert-option input:checked + .likert-label .likert-text {
+            color: white;
+        }
+
+        .likert-option:hover .likert-label {
+            border-color: var(--ocean-light);
+            background: var(--foam);
+        }
+
+        .likert-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ocean-deep);
+            margin-bottom: 4px;
+        }
+
+        .likert-text {
+            font-size: 0.6rem;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding-top: 16px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+            color: white;
+            border: none;
+            padding: 18px 56px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.5);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn.loading {
+            pointer-events: none;
+        }
+
+        .submit-btn.loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 10px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--coral), var(--sand-dark));
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+        }
+
+        .results .section {
+            text-align: left;
+        }
+
+        .mahalo-message {
+            background: linear-gradient(135deg, var(--sand), white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .mahalo-message h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--ocean-deep);
+            margin-bottom: 12px;
+        }
+
+        .mahalo-message p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .mahalo-flower {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .result-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--coral);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--sand);
+        }
+
+        .result-scores {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: var(--foam);
+            border-radius: 10px;
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .score-value {
+            font-weight: 700;
+            color: var(--ocean-deep);
+            background: white;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .section-total {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #cbd5e1;
+            text-align: right;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .section-total strong {
+            color: var(--ocean-deep);
+        }
+
+        .copy-btn {
+            background: white;
+            color: var(--ocean-deep);
+            border: 2px solid var(--ocean-light);
+            padding: 14px 36px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .copy-btn:hover {
+            background: var(--foam);
+            border-color: var(--ocean-deep);
+        }
+
+        .copy-success {
+            color: var(--palm);
+            font-size: 0.875rem;
+            margin-top: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-success.show {
+            opacity: 1;
+        }
+
+        .name-input-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .name-input-section label {
+            display: block;
+            font-weight: 600;
+            color: var(--ocean-deep);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .name-input-section input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .name-input-section input:focus {
+            outline: none;
+            border-color: var(--ocean-light);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+        }
+
+        .name-input-section small {
+            display: block;
+            margin-top: 8px;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--sand);
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--sand);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 16px 140px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+
+            .brand-name {
+                font-size: 1.25rem;
+            }
+
+            .likert-text {
+                display: none;
+            }
+
+            .likert-label {
+                padding: 10px 8px;
+            }
+
+            .result-scores {
+                grid-template-columns: 1fr;
+            }
+
+            .hawaiian-divider {
+                margin: 24px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="container">
+        <header>
+            <div class="brand">
+                <!-- Stylized wave/taro leaf icon -->
+                <svg class="brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" fill="#fef3c7" fill-opacity="0.2"/>
+                    <path d="M24 8C24 8 12 16 12 28C12 34 17.4 40 24 40C30.6 40 36 34 36 28C36 16 24 8 24 8Z" fill="#fef3c7" fill-opacity="0.9"/>
+                    <path d="M24 12C24 12 20 24 24 36" stroke="#0c4a6e" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M24 18C24 18 18 22 16 28" stroke="#0c4a6e" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M24 18C24 18 30 22 32 28" stroke="#0c4a6e" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="brand-name">Waiwai Neuroeconomics</span>
+            </div>
+            <h1>Founders Growth Archetype Survey</h1>
+            <p class="subtitle">18 questions · ~3 minutes</p>
+        </header>
+
+        <div class="hawaiian-divider">🌺</div>
+
+        <form id="surveyForm">
+            <!-- Name Input -->
+            <div class="name-input-section">
+                <label for="respondentName">Your Name</label>
+                <input type="text" id="respondentName" name="respondentName" placeholder="Enter your name" required>
+                <small>Your responses will be saved securely</small>
+            </div>
+
+            <!-- Section I: Ancestral Intelligence -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">I</div>
+                    <h2 class="section-title">Ancestral Intelligence</h2>
+                </div>
+                <p class="section-purpose">Identifies identity drivers, cultural attitudes & relational tendencies</p>
+                
+                <div class="question" data-section="ancestral" data-index="1">
+                    <p class="question-text">
+                        <span class="question-number">1.</span>
+                        <span>I stay true to my values even when it's difficult or unpopular.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="a1" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a1" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a1" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a1" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a1" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="ancestral" data-index="2">
+                    <p class="question-text">
+                        <span class="question-number">2.</span>
+                        <span>I react strongly to emotional situations and feel things deeply.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="a2" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a2" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a2" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a2" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a2" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="ancestral" data-index="3">
+                    <p class="question-text">
+                        <span class="question-number">3.</span>
+                        <span>I feel energized when I meet new people or explore new environments.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="a3" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a3" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a3" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a3" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a3" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="ancestral" data-index="4">
+                    <p class="question-text">
+                        <span class="question-number">4.</span>
+                        <span>I go out of my way to avoid conflict and create harmony.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="a4" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a4" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a4" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a4" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a4" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="ancestral" data-index="5">
+                    <p class="question-text">
+                        <span class="question-number">5.</span>
+                        <span>I naturally create structure, organization, and clear plans.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="a5" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a5" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a5" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a5" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a5" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="ancestral" data-index="6">
+                    <p class="question-text">
+                        <span class="question-number">6.</span>
+                        <span>I am open to new ideas, new experiences, and new ways of thinking.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="a6" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a6" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a6" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a6" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="a6" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section II: Acquired Competencies -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">II</div>
+                    <h2 class="section-title">Acquired Competencies</h2>
+                </div>
+                <p class="section-purpose">Identifies skill tendencies, collaboration style & execution strengths</p>
+
+                <div class="question" data-section="acquired" data-index="1">
+                    <p class="question-text">
+                        <span class="question-number">1.</span>
+                        <span>I enjoy helping others collaborate and feel included.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="c1" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c1" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c1" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c1" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c1" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="acquired" data-index="2">
+                    <p class="question-text">
+                        <span class="question-number">2.</span>
+                        <span>I easily come up with new ideas, approaches, and possibilities.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="c2" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c2" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c2" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c2" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c2" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="acquired" data-index="3">
+                    <p class="question-text">
+                        <span class="question-number">3.</span>
+                        <span>I prefer structure and clear systems to keep things moving.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="c3" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c3" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c3" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c3" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c3" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="acquired" data-index="4">
+                    <p class="question-text">
+                        <span class="question-number">4.</span>
+                        <span>I focus on achieving measurable results and competitive outcomes.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="c4" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c4" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c4" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c4" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c4" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="acquired" data-index="5">
+                    <p class="question-text">
+                        <span class="question-number">5.</span>
+                        <span>I notice patterns in data and translate them into clear insights.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="c5" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c5" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c5" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c5" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c5" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="acquired" data-index="6">
+                    <p class="question-text">
+                        <span class="question-number">6.</span>
+                        <span>I am comfortable navigating change, uncertainty, and adaptation.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="c6" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c6" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c6" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c6" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="c6" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section III: Applied Decisions -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">III</div>
+                    <h2 class="section-title">Applied Decisions</h2>
+                </div>
+                <p class="section-purpose">Identifies real-world decision pathways and how you choose under pressure</p>
+
+                <div class="question" data-section="applied" data-index="1">
+                    <p class="question-text">
+                        <span class="question-number">1.</span>
+                        <span>I make decisions by analyzing information and comparing options.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="d1" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d1" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d1" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d1" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d1" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="applied" data-index="2">
+                    <p class="question-text">
+                        <span class="question-number">2.</span>
+                        <span>I rely on how a choice feels emotionally or relationally.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="d2" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d2" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d2" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d2" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d2" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="applied" data-index="3">
+                    <p class="question-text">
+                        <span class="question-number">3.</span>
+                        <span>I trust my instincts and move quickly when something feels right.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="d3" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d3" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d3" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d3" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d3" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="applied" data-index="4">
+                    <p class="question-text">
+                        <span class="question-number">4.</span>
+                        <span>Under pressure, I slow down and think through consequences.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="d4" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d4" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d4" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d4" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d4" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="applied" data-index="5">
+                    <p class="question-text">
+                        <span class="question-number">5.</span>
+                        <span>Under pressure, I focus on the people involved and the emotions present.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="d5" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d5" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d5" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d5" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d5" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question" data-section="applied" data-index="6">
+                    <p class="question-text">
+                        <span class="question-number">6.</span>
+                        <span>Under pressure, I act quickly based on what my body tells me.</span>
+                    </p>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" name="d6" value="1" required>
+                            <label class="likert-label">
+                                <span class="likert-value">1</span>
+                                <span class="likert-text">Strongly Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d6" value="2">
+                            <label class="likert-label">
+                                <span class="likert-value">2</span>
+                                <span class="likert-text">Disagree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d6" value="3">
+                            <label class="likert-label">
+                                <span class="likert-value">3</span>
+                                <span class="likert-text">Neutral</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d6" value="4">
+                            <label class="likert-label">
+                                <span class="likert-value">4</span>
+                                <span class="likert-text">Agree</span>
+                            </label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" name="d6" value="5">
+                            <label class="likert-label">
+                                <span class="likert-value">5</span>
+                                <span class="likert-text">Strongly Agree</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Survey</button>
+            </div>
+        </form>
+
+        <div class="results" id="results">
+            <div class="mahalo-message">
+                <div class="mahalo-flower">🌺</div>
+                <h2>Mahalo!</h2>
+                <p>Your responses have been recorded. Here's a summary of your results.</p>
+            </div>
+
+            <div class="section result-card">
+                <h3>I. Ancestral Intelligence</h3>
+                <div class="result-scores" id="ancestralScores"></div>
+                <div class="section-total" id="ancestralTotal"></div>
+            </div>
+
+            <div class="section result-card">
+                <h3>II. Acquired Competencies</h3>
+                <div class="result-scores" id="acquiredScores"></div>
+                <div class="section-total" id="acquiredTotal"></div>
+            </div>
+
+            <div class="section result-card">
+                <h3>III. Applied Decisions</h3>
+                <div class="result-scores" id="appliedScores"></div>
+                <div class="section-total" id="appliedTotal"></div>
+            </div>
+
+            <button class="copy-btn" id="copyBtn">Copy Results to Clipboard</button>
+            <p class="copy-success" id="copySuccess">✓ Copied to clipboard!</p>
+        </div>
+
+        <footer>
+            <p>© Waiwai Neuroeconomics</p>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION - Replace with your Google Apps Script URL
+        // ============================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlurgAGX783OyiGaj-Xjl1HQDNbcYee09cjxuZ1C10iWcwZj5qCx2tQlbZhJqpho9TBQ/exec';
+        // ============================================
+
+        const form = document.getElementById('surveyForm');
+        const results = document.getElementById('results');
+        const progressBar = document.getElementById('progressBar');
+        const copyBtn = document.getElementById('copyBtn');
+        const copySuccess = document.getElementById('copySuccess');
+        const submitBtn = document.getElementById('submitBtn');
+
+        const questionLabels = {
+            ancestral: [
+                'Values Integrity',
+                'Emotional Depth',
+                'Social Energy',
+                'Harmony Seeking',
+                'Structure Creation',
+                'Openness'
+            ],
+            acquired: [
+                'Collaboration',
+                'Idea Generation',
+                'Systems Preference',
+                'Results Focus',
+                'Pattern Recognition',
+                'Adaptability'
+            ],
+            applied: [
+                'Analytical Decisions',
+                'Emotional Decisions',
+                'Instinct Trust',
+                'Deliberate Under Pressure',
+                'People Focus Under Pressure',
+                'Somatic Response'
+            ]
+        };
+
+        // Update progress bar and mark answered questions
+        function updateProgress() {
+            const totalQuestions = 18;
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            const percentage = (answered / totalQuestions) * 100;
+            progressBar.style.width = percentage + '%';
+
+            // Mark questions as answered
+            document.querySelectorAll('.question').forEach(q => {
+                const name = q.querySelector('input[type="radio"]')?.name;
+                if (name && document.querySelector(`input[name="${name}"]:checked`)) {
+                    q.classList.add('answered');
+                }
+            });
+        }
+
+        // Add change listeners to all radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateProgress);
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const respondentName = formData.get('respondentName');
+            
+            const scores = {
+                ancestral: [],
+                acquired: [],
+                applied: []
+            };
+
+            // Collect ancestral scores
+            for (let i = 1; i <= 6; i++) {
+                scores.ancestral.push(parseInt(formData.get('a' + i)));
+            }
+
+            // Collect acquired scores
+            for (let i = 1; i <= 6; i++) {
+                scores.acquired.push(parseInt(formData.get('c' + i)));
+            }
+
+            // Collect applied scores
+            for (let i = 1; i <= 6; i++) {
+                scores.applied.push(parseInt(formData.get('d' + i)));
+            }
+
+            // Calculate totals
+            const ancestralTotal = scores.ancestral.reduce((a, b) => a + b, 0);
+            const acquiredTotal = scores.acquired.reduce((a, b) => a + b, 0);
+            const appliedTotal = scores.applied.reduce((a, b) => a + b, 0);
+            const grandTotal = ancestralTotal + acquiredTotal + appliedTotal;
+
+            // Prepare data for Google Sheets
+            const sheetData = {
+                timestamp: new Date().toISOString(),
+                name: respondentName,
+                // Ancestral Intelligence
+                a1_values_integrity: scores.ancestral[0],
+                a2_emotional_depth: scores.ancestral[1],
+                a3_social_energy: scores.ancestral[2],
+                a4_harmony_seeking: scores.ancestral[3],
+                a5_structure_creation: scores.ancestral[4],
+                a6_openness: scores.ancestral[5],
+                ancestral_total: ancestralTotal,
+                // Acquired Competencies
+                c1_collaboration: scores.acquired[0],
+                c2_idea_generation: scores.acquired[1],
+                c3_systems_preference: scores.acquired[2],
+                c4_results_focus: scores.acquired[3],
+                c5_pattern_recognition: scores.acquired[4],
+                c6_adaptability: scores.acquired[5],
+                acquired_total: acquiredTotal,
+                // Applied Decisions
+                d1_analytical_decisions: scores.applied[0],
+                d2_emotional_decisions: scores.applied[1],
+                d3_instinct_trust: scores.applied[2],
+                d4_deliberate_pressure: scores.applied[3],
+                d5_people_focus_pressure: scores.applied[4],
+                d6_somatic_response: scores.applied[5],
+                applied_total: appliedTotal,
+                // Grand total
+                grand_total: grandTotal
+            };
+
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Submitting';
+
+            try {
+                // Send to Google Sheets
+                if (GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(sheetData)
+                    });
+                }
+
+                // Display results
+                displayResults(scores, respondentName);
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                // Still show results even if submission fails
+                displayResults(scores, respondentName);
+            }
+        });
+
+        function displayResults(scores, name) {
+            form.style.display = 'none';
+            results.style.display = 'block';
+
+            // Populate ancestral scores
+            const ancestralDiv = document.getElementById('ancestralScores');
+            ancestralDiv.innerHTML = scores.ancestral.map((score, i) => `
+                <div class="score-item">
+                    <span class="score-label">${questionLabels.ancestral[i]}</span>
+                    <span class="score-value">${score}</span>
+                </div>
+            `).join('');
+            document.getElementById('ancestralTotal').innerHTML = 
+                `Section Total: <strong>${scores.ancestral.reduce((a, b) => a + b, 0)}/30</strong>`;
+
+            // Populate acquired scores
+            const acquiredDiv = document.getElementById('acquiredScores');
+            acquiredDiv.innerHTML = scores.acquired.map((score, i) => `
+                <div class="score-item">
+                    <span class="score-label">${questionLabels.acquired[i]}</span>
+                    <span class="score-value">${score}</span>
+                </div>
+            `).join('');
+            document.getElementById('acquiredTotal').innerHTML = 
+                `Section Total: <strong>${scores.acquired.reduce((a, b) => a + b, 0)}/30</strong>`;
+
+            // Populate applied scores
+            const appliedDiv = document.getElementById('appliedScores');
+            appliedDiv.innerHTML = scores.applied.map((score, i) => `
+                <div class="score-item">
+                    <span class="score-label">${questionLabels.applied[i]}</span>
+                    <span class="score-value">${score}</span>
+                </div>
+            `).join('');
+            document.getElementById('appliedTotal').innerHTML = 
+                `Section Total: <strong>${scores.applied.reduce((a, b) => a + b, 0)}/30</strong>`;
+
+            // Store scores for copy function
+            window.surveyScores = scores;
+            window.respondentName = name;
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        copyBtn.addEventListener('click', function() {
+            const scores = window.surveyScores;
+            const name = window.respondentName;
+            
+            let text = `FOUNDERS GROWTH ARCHETYPE SURVEY RESULTS\n`;
+            text += `Respondent: ${name}\n`;
+            text += '=' .repeat(45) + '\n\n';
+
+            text += 'I. ANCESTRAL INTELLIGENCE\n';
+            scores.ancestral.forEach((score, i) => {
+                text += `   ${i + 1}. ${questionLabels.ancestral[i]}: ${score}\n`;
+            });
+            text += `   Section Total: ${scores.ancestral.reduce((a, b) => a + b, 0)}/30\n\n`;
+
+            text += 'II. ACQUIRED COMPETENCIES\n';
+            scores.acquired.forEach((score, i) => {
+                text += `   ${i + 1}. ${questionLabels.acquired[i]}: ${score}\n`;
+            });
+            text += `   Section Total: ${scores.acquired.reduce((a, b) => a + b, 0)}/30\n\n`;
+
+            text += 'III. APPLIED DECISIONS\n';
+            scores.applied.forEach((score, i) => {
+                text += `   ${i + 1}. ${questionLabels.applied[i]}: ${score}\n`;
+            });
+            text += `   Section Total: ${scores.applied.reduce((a, b) => a + b, 0)}/30\n\n`;
+
+            const grandTotal = scores.ancestral.reduce((a, b) => a + b, 0) +
+                               scores.acquired.reduce((a, b) => a + b, 0) +
+                               scores.applied.reduce((a, b) => a + b, 0);
+            text += `GRAND TOTAL: ${grandTotal}/90`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                copySuccess.classList.add('show');
+                setTimeout(() => copySuccess.classList.remove('show'), 2000);
+            });
+        });
+    </script>
+</body>
+</html>
