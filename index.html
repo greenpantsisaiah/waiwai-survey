@@ -1458,9 +1458,9 @@
 
     <script>
         // ============================================
-        // CONFIGURATION - Replace with your Google Apps Script URL
+        // CONFIGURATION - Google Apps Script endpoint
         // ============================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlurgAGX783OyiGaj-Xjl1HQDNbcYee09cjxuZ1C10iWcwZj5qCx2tQlbZhJqpho9TBQ/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOsxIzHr8jPvzU8HSKEb-CdVAhXq6oRme9bNW6h8OYEqt4diT7z-BEC0zw9YnV8uEwuA/exec';
         // ============================================
 
         const form = document.getElementById('surveyForm');
@@ -1589,21 +1589,19 @@
 
             try {
                 // Send to Google Sheets
-                if (GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(sheetData)
-                    });
-                }
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sheetData)
+                });
 
                 // Display results
                 displayResults(scores, respondentName);
             } catch (error) {
-                console.error('Error submitting to Google Sheets:', error);
+                console.error('Error submitting:', error);
                 // Still show results even if submission fails
                 displayResults(scores, respondentName);
             }
