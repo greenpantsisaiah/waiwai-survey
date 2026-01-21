@@ -598,6 +598,13 @@
                 <small>Your responses will be saved securely</small>
             </div>
 
+            <!-- Email Input -->
+            <div class="name-input-section" style="margin-top: -8px;">
+                <label for="respondentEmail">Where shall we email your results?</label>
+                <input type="email" id="respondentEmail" name="respondentEmail" placeholder="Enter your email (optional)">
+                <small>We'll send you a beautiful summary of your archetype</small>
+            </div>
+
             <!-- Section I: Ancestral Intelligence -->
             <div class="section">
                 <div class="section-header">
@@ -1460,7 +1467,7 @@
         // ============================================
         // CONFIGURATION - Google Apps Script endpoint
         // ============================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOsxIzHr8jPvzU8HSKEb-CdVAhXq6oRme9bNW6h8OYEqt4diT7z-BEC0zw9YnV8uEwuA/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxl7J9qYFremwcqpwHU0Pwk6WdCIT-yDWqUVhq-R1ciZKcjPwRod2whN01gEXYp1fkj/exec';
         // ============================================
 
         const form = document.getElementById('surveyForm');
@@ -1523,6 +1530,7 @@
             
             const formData = new FormData(form);
             const respondentName = formData.get('respondentName');
+            const respondentEmail = formData.get('respondentEmail') || '';
             
             const scores = {
                 ancestral: [],
@@ -1555,6 +1563,7 @@
             const sheetData = {
                 timestamp: new Date().toISOString(),
                 name: respondentName,
+                email: respondentEmail,
                 // Ancestral Intelligence
                 a1_values_integrity: scores.ancestral[0],
                 a2_emotional_depth: scores.ancestral[1],
